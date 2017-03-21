@@ -1,0 +1,48 @@
+<html>
+<head>
+<title>CSSSC</title>
+<style>
+	body{
+		background-color:lightgreen;
+		text-align:center;
+	}
+	a{
+		font-weight: 600;
+		text-align:center;
+	}
+</style>
+</head>
+<body>
+	<script type="text/javascript">
+		function appendNode() {
+		   var objNode = document.getElementById("myDiv");
+		   var strText = "段落四";
+		   var objNewNode = document.createElement("P");
+		   var objTextNode = document.createTextNode(strText);
+		   objNode.appendChild(objNewNode);
+		   objNewNode.appendChild(objTextNode);
+		}
+		
+		function insertNode(objNode, objBrother, strText) {
+		   var objNode = document.getElementById("myDiv");
+		   var objBrother = objNode.children[1];
+		   var strText = '段落一.二';
+		   var objNewNode = document.createElement("P");
+		   var objTextNode = document.createTextNode(strText);
+		   objNode.insertBefore(objNewNode, objBrother);
+		   objNewNode.appendChild(objTextNode);
+		}
+
+	</script>
+
+	<div id="myDiv">
+		<p onclick="appendNode()">段落一</p>
+		<p onclick="insertNode()">段落二</p>
+		<p>段落三</p>
+		<input type="button" onclick="appendNode()" value="⊙">
+		<input type="button" onclick="insertNode()" value="⊕">
+		
+	</div>
+
+</body>
+</html>
