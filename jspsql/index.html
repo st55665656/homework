@@ -1,0 +1,88 @@
+<html>
+<style>
+    body {
+        background-image: url("http://images.all-free-download.com/images/graphiclarge/abstract_smooth_wave_background_vector_grapihic_art_569579.jpg");
+        background-size: 100%;
+    }
+</style>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Home</title>
+    <!-- 最新編譯和最佳化的 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- 選擇性佈景主題 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!-- 最新編譯和最佳化的 JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css_style.css">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+    <script src="jquery-1.7.1.js"></script>
+    <script language="JavaScript">
+        $(document).ready(function() {
+            $("#acco").blur(function() {
+                // 取得表單欄位值
+                var accoVal = $("#acco").val();
+                // 使用HTTP POST方法送出Ajax請求
+                $.post("register.jsp", {
+                        acco: accoVal,
+                    },
+                    function(data) {
+                        // 取出XML元素值hq
+                        if($(data).find("h1").text() == "帳號重複，請重新輸入3Q"){
+                          $("h2").html("帳號重複，請重新輸入3Q");
+                          $("#gasd").attr("disabled", true);
+                        }else{
+                          alert("姓名:12312312 "+ $(data).find("h1").text());
+                          $("#gasd").attr("disabled", false);
+                        }
+                    }
+                );
+                return false;
+            });
+        });
+
+
+
+        function Bye() {
+            $("#index").hide();
+            $("#register").fadeIn();
+        }
+
+        function Bye2() {
+            $("#index").fadeIn();
+            $("#register").hide();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <div id="index">
+        <h1>N　C　H　U</h1>
+        <form id="person" method="post" action="login.jsp">
+            帳號：<input type="text" id="acco" name="ac" class="form-control" placeholder="請輸入帳號" required /><h2></h2><br> 密碼：
+            <input type="text" name="pa" class="form-control" placeholder="請輸入密碼" required /> <br>
+            <input type="button" value="註冊" onclick="Bye()">
+            <input type="submit" id="gasd" name="submitt" value="登入"><br>
+        </form>
+    </div>
+
+    <div id="register" style="display:none">
+        <h1>註　冊</h1>
+        <form id="person2" method="post" action="register.jsp">
+            帳號：<input type="text" name="reac" class="form-control" placeholder="請輸入帳號" required />
+            <br> 密碼：
+            <input type="text" name="repa" class="form-control" placeholder="請輸入密碼" required /><br> 姓名：
+            <input type="text" name="rena" class="form-control" placeholder="請輸入姓名" required /><br> Birthday:
+            <input type="date" name="rebir" required /><br/><br/> memo:
+            <input type="textarea" class="form-control" name="rememo" required /><br/><br/>
+            <input type="submit" value="確認註冊">
+            <input type="button" value="返回主畫面" onclick="Bye2()"><br>
+        </form>
+    </div>
+
+</body>
+
+</html>
